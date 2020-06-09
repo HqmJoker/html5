@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>h5_拖拽</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3>拖动源对象</h3>
+    <img src="res/t.png" alt="停机场" id="t"/>
+    <hr />
+    <img src="res/p4.png" alt="飞机" id="p4"/>
+
+    <script>
+        var p4 = document.getElementById("p4");
+        var t = document.getElementById("t");
+        //拖拽源事件
+        p4.ondragstart = function(){
+            console.log("拖动开始");
+        };
+        p4.ondrag = function(){
+            console.log("拖动中");
+        };
+        p4.ondragend = function(){
+            console.log("拖动结束");
+        };
+        //释放区事件
+        t.ondragenter = function(){
+            console.log("进入释放区域");
+        };
+        t.ondragover = function(e){
+            e.preventDefault();
+            console.log("悬停释放区域");
+        };
+        t.ondragleave = function(){
+            console.log("离开释放区域");
+        };
+        t.ondrop = function(){
+            p4.style.display = "none";
+        };
+    </script>
+</body>
+</html>
