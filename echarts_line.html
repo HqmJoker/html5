@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>echarts</title>
+    <script src="echarts.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #main{
+            background-color: #ddd;
+            margin: 0 auto;
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h3>echarts统计图</h3>
+    <div id="main"></div>
+
+    <script>
+        var mycharts = echarts.init(document.getElementById("main"));
+        var option = {
+            title:{
+                text:"折线图",
+                show:true,
+                left:"center",
+                textStyle:{fontSize:30},
+                subtext:"各公司销售统计"
+            },
+            toolbox:{
+                show:true,
+                feature:{
+                    dataView:{show:true},
+                    restore:{show:true},
+                    dataZoom:{show:true},
+                    saveAsImage:{show:true}
+                }
+            },
+            xAxis:{data:["东城","西城","南城","大兴","门头沟"]},
+            yAxis:{},
+            series:[{
+                type:"line",
+                data:[10,20,25,3,2]
+            }]
+        };
+        mycharts.setOption(option);
+    </script>
+</body>
+</html>
