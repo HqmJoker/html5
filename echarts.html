@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>echarts</title>
+    <script src="echarts.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #main{
+            background-color: #ddd;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h3>echarts统计图</h3>
+    <div id="main" style="width: 500px;height: 400px"></div>
+
+    <script>
+        var main = document.getElementById("main");
+        var myCharts = echarts.init(main);
+        var option ={
+            title:{"text":"这是一个echarts统计图的标题"},
+            tooltip:{},
+            xAxis:{//x轴坐标项
+                data:["北京","上海","广州","深圳","杭州"]
+            },
+            yAxis:{},//y轴坐标项，如果不给定数据，系统会默认添加合适的数据
+            series:[{
+                // name:"销量",//统计图图形显示
+                type:"bar",//图形类型
+                data:[100,38,21,165,185]
+            }]
+        };
+        myCharts.setOption(option);
+    </script>
+</body>
+</html>
