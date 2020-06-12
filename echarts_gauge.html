@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>echarts-仪表盘</title>
+    <script src="echarts.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #main{
+            background-color: #ddd;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h3>echarts统计图</h3>
+    <div id="main" style="width: 500px;height: 400px"></div>
+
+    <script>
+        var main = document.getElementById("main");
+        var myCharts = echarts.init(main);
+        var option ={
+            title:{
+                "text":"这是一个echarts统计图的标题",
+                left:"center"
+            },
+            series:{
+                name:"业务指标",
+                type:"gauge",//图形类型
+                detail:{formatter:"{value}%"},
+                data:[{value:90,name:"完成率"}]
+            }
+        };
+        myCharts.setOption(option);
+    </script>
+</body>
+</html>
