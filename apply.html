@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>手动实现apply</title>
+    </head>
+    <body>
+        test
+        <script type="application/javascript">
+            window.Function.prototype.apply2 = function(obj, arr){
+                var fn = Symbol('fn');
+                obj = obj || window;
+                obj[fn] = this;
+                var result;
+                if(!arr){
+                    result = obj[fn]();
+                }else{
+                    var args = []
+                    for(let i=0, len=arr.length; i<len; i++){
+                        args.push('arr['+i+']')
+                    }
+                    result = eval('obj[fn]('+args+')')
+                }
+                delete obj[fn]
+                return result;
+            }
+        </script>
+    </body>
+</html>
