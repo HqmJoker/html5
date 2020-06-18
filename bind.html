@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>模拟实现bind</title>
+    </head>
+    <body>
+        test bind
+        <script type="application/javascript">
+            // 1.0简易版bind实现 
+            window.Function.prototype.bind1 = function(obj){
+                var that = this;
+                return function(){
+                    return that.apply(obj)
+                }
+            }
+            var foo = {
+                value: 1
+            };
+
+            function bar() {
+                return this.value;
+            }
+
+            var bindFoo = bar.bind(foo);
+            var bindFoo1 = bar.bind(foo);
+
+            console.log(bindFoo()); // 1
+            console.log(bindFoo1()); // 1
+        </script>
+    </body>
+</html>
