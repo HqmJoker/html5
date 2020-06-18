@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>call手动实现4.0版本</title>
+    </head>
+    <body>
+        test4
+        <script type="application/javascript">
+      
+            //4.0防止原来的fn被覆盖后删除，引入symbol唯一类型 
+                window.Function.prototype.call5 = function(obj){
+                    obj = obj || window;
+                    var fn = Symbol('fn');
+                    obj[fn] = this;
+                    var args = [];
+                    for(let i=1, len=arguments.length; i<len; i++){
+                        args.push('arguments['+i+']');
+                    }
+                    var result = eval('obj[fn]('+args+')');
+                    delete obj[fn]
+                    return result;
+                }
+                
+                // 测试一下
+                var value = 2;
+                var obj = {
+                    value: 1
+                }
+
+                function bar(name, age) {
+                    console.log(this.value);
+                    return {
+                        value: this.value,
+                        name: name,
+                        age: age
+                    }
+                }
+                bar.call5(null); // 2
+           
+                console.log(bar.call5(obj, 'kevin', 18));
+        </script>
+    </body>
+
+</html>
