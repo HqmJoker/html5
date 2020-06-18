@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>call手动实现2.0</title>
+	</head>
+	<body>
+		test2
+		<script type="application/javascript">
+			/*
+				//模型转换后
+				var foo = {
+					value: 1
+				};
+
+				function bar(name, age) {
+					console.log(name)
+					console.log(age)
+					console.log(this.value);
+				}
+
+				bar.call(foo, 'kevin', 18);
+			*/
+			window.onload = function(){
+				window.Function.prototype.call3 = function(obj){
+					obj.fn = this;
+					let args = [];
+					for(let i=1, len = arguments.length; i<len; i++){
+						args.push('arguments['+i+']');
+					}
+					eval('obj.fn(""+'+args+'+"")');
+					delete obj.fn;
+				}
+				
+				var foo = {
+					value: 1
+				};
+
+				function bar(name, age) {
+					console.log(name)
+					console.log(age)
+					console.log(this.value);
+				}
+				bar.call3(foo, 'kevin', 18); 
+			}
+		</script>
+	</body>
+</html>
