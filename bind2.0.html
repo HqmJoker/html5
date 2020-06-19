@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>模拟实现bind2.0</title>
+    </head>
+    <body>
+        test bind2.0
+        <script type="application/javascript">
+            // 2.0简易版bind实现 
+            window.Function.prototype.bind3 = function(obj){
+                var that = this;
+                var args = Array.prototype.slice.call(arguments,1);
+                return function(){
+                    var callback_args = Array.prototype.slice.call(arguments);
+                    return that.apply(obj,args.concat(callback_args))
+                }
+            }
+            var foo = {
+                value: 1
+            };
+
+            function bar(name, age) {
+                console.log(this.value);
+                console.log(name);
+                console.log(age);
+
+            }
+
+            var bindFoo = bar.bind(foo, 'daisy');
+            var bindFoo3 = bar.bind3(foo, 'daisy');
+            bindFoo('18');
+            bindFoo3('18');
+            // 1
+            // daisy
+            // 18
+        </script>
+    </body>
+</html>
